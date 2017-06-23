@@ -1,0 +1,26 @@
+describe SearchScreenController do
+
+  subject { SearchScreenController.new(UserSearchScreenController
+                                           .new(nil)) }
+
+  describe '#next_controller' do
+    context 'when the input is a valid option' do
+      it 'returns the next controller' do
+        expect(subject.next_controller('1')).to be_a(UserSearchScreenController)
+      end
+    end
+
+    context 'when the input is not valid option' do
+      it 'returns its self' do
+        expect(subject.next_controller('99')).to eql(subject)
+      end
+    end
+  end
+
+  describe '#render' do
+    it 'renders its view' do
+      expect(subject.render).to eql(SearchScreenView.new.render)
+    end
+  end
+
+end
