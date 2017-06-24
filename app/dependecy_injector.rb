@@ -9,11 +9,11 @@ module DependencyInjector
   end
 
   def search_option_screen_controller
-    @search_option_screen_controller ||= SearchOptionScreenController.new(user_search_screen_controller)
+    @search_option_screen_controller ||= SearchOptionScreenController.new(search_screen_controller)
   end
 
-  def user_search_screen_controller
-    @user_search_screen_controller ||= UserSearchScreenController.new(user_repository)
+  def search_screen_controller
+    @search_screen_controller ||= SearchScreenController.new(user_repository)
   end
 
   def user_repository

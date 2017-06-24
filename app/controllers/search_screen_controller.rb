@@ -1,4 +1,4 @@
-class UserSearchScreenController
+class SearchScreenController
 
   def initialize(user_repository)
     @user_repository = user_repository

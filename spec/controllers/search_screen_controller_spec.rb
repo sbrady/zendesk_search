@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe UserSearchScreenController do
+describe SearchScreenController do
   let(:users) { [{_id: '9999', name: 'foo bar'}] }
   let(:user_repository) { UserRepository.new(users) }
-  subject { UserSearchScreenController.new(user_repository) }
+  subject { SearchScreenController.new(user_repository) }
 
   describe 'next_controller' do
     context 'when the input is a valid field' do
