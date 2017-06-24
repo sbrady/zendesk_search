@@ -9,7 +9,8 @@ class FrontController
   end
 
   def process(input=nil)
-    input = input ? input.strip : nil
+    return @current_controller if input.nil?
+    input = input.strip
     @current_controller = @current_controller.next_controller(input)
   end
 

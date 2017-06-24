@@ -1,3 +1,2 @@
-class Ticket
-  include Model
+class Ticket < Model
 end

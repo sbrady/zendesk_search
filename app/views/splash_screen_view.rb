@@ -5,6 +5,8 @@ class SplashScreenView
 Welcome to Zendesk Search
 
 - Press 1 to search Zendesk
+- Press 2 to list searchable fields
+
     SPLASH
   end
 

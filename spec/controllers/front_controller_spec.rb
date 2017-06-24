@@ -3,7 +3,7 @@ require 'spec_helper'
 describe FrontController do
   let(:search_screen_controller) { SearchScreenController.new(nil) }
   let(:search_option_screen_controller) { SearchOptionScreenController.new([search_screen_controller]) }
-  let(:splash_screen_controller) { SplashScreenController.new(search_option_screen_controller) }
+  let(:splash_screen_controller) { SplashScreenController.new([search_option_screen_controller]) }
   subject { FrontController.new(splash_screen_controller) }
 
   describe '#process' do

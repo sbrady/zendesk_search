@@ -1,3 +1,2 @@
-class Organization
-  include Model
+class Organization < Model
 end

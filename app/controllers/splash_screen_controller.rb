@@ -1,14 +1,12 @@
 class SplashScreenController
 
-  def initialize(search_option_screen_controller)
-    @search_option_screen_controller = search_option_screen_controller
+  def initialize(splash_screen_options)
+    @splash_screen_options = splash_screen_options
   end
 
   def next_controller(option)
-    return @search_option_screen_controller if option == '1'
-    self
+    @splash_screen_options[option.to_i - 1] || self
   end
-
 
   def render
     SplashScreenView.new.render

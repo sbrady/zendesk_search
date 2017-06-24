@@ -1,13 +1,12 @@
 module Repository
 
   def initialize(results)
-    @results = results
+    @results = results.map { |result_hash| self.class::MODEL_TYPE.new(result_hash) }
   end
 
   def find_by(field, value)
     @results
-        .select { |ticket| ticket[field].to_s == value }
-        .map { |ticket_hash| self.class::MODEL_TYPE.new(ticket_hash) }
+        .select { |result| result.send(field).to_s == value }
   end
 
 end

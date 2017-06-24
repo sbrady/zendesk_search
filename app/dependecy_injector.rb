@@ -4,8 +4,12 @@ module DependencyInjector
     @front_controller ||= FrontController.new(splash_screen_controller)
   end
 
+  def splash_screen_options
+    [search_option_screen_controller, searchable_screen_controller]
+  end
+
   def splash_screen_controller
-    @splash_screen_controller ||= SplashScreenController.new(search_option_screen_controller)
+    @splash_screen_controller ||= SplashScreenController.new(splash_screen_options)
   end
 
   def search_option_controllers
@@ -26,6 +30,10 @@ module DependencyInjector
 
   def organizations_search_screen_controller
     @organizations_search_screen_controller ||= SearchScreenController.new(organization_repository)
+  end
+
+  def searchable_screen_controller
+    @searchable_screen_controller ||= SearchableScreenController.new
   end
 
   def organization_repository

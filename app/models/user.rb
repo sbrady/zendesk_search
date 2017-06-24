@@ -1,3 +1,2 @@
-class User
-  include Model
+class User < Model
 end
