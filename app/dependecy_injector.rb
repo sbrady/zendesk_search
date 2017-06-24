@@ -1,7 +1,7 @@
 module DependencyInjector
 
   def front_controller
-    @front_controller ||= FrontController.new(splash_screen_controller)
+    @front_controller ||= FrontController.new(splash_screen_controller, ProgramEnder)
   end
 
   def splash_screen_options
