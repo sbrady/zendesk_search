@@ -1,5 +1,9 @@
 module DependencyInjector
 
+  def initialize
+    all_repositories
+  end
+
   def front_controller
     @front_controller ||= FrontController.new(splash_screen_controller, ProgramEnder)
   end
@@ -48,9 +52,12 @@ module DependencyInjector
     @ticket_repository ||= TicketRepository.new(tickets)
   end
 
-  def self.included(_)
-    @all_repositories = [organization_repository,user_repository,ticket_repository]
-    @all_repositories.each {|repository| repository.repositories=@all_repositories }
+  def all_repositories
+    unless @all_repositories
+      @all_repositories = [organization_repository, user_repository, ticket_repository]
+      @all_repositories.each { |repository| repository.repositories=all_repositories }
+    end
+    @all_repositories
   end
 
   def users

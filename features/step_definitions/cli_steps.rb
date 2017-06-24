@@ -33,6 +33,9 @@ Then(/^I can see the user with id "([^"]*)"$/) do |id|
   output = run
   expect(output).to include("_id:                   #{id}")
   expect(output).to include('name:         Rose Newton')
+  expect(output).to include('organization:')
+  expect(output).to include('_id:                 122')
+  expect(output).to include('name:            Geekfarm')
 end
 
 Then(/^I can see the ticket with id "([^"]*)"$/) do |id|
