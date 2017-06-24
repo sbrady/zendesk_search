@@ -6,7 +6,6 @@ describe UserRepository do
 
 
   describe 'find_by' do
-
     context 'when a string field' do
       it 'finds by the field and value' do
         expect(subject.find_by(:name,'foo bar').size).to eq(1)

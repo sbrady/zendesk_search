@@ -1,4 +1,4 @@
-Given(/^a "(user|ticket)" exists with the id "([^"]*)"$/) do |type,id|
+Given(/^a "(user|ticket|organization)" exists with the id "([^"]*)"$/) do |type, id|
 end
 
 Given(/^I have started the app$/) do
@@ -36,3 +36,9 @@ Then(/^I can see the ticket with id "([^"]*)"$/) do |id|
   expect(output).to include('status:             pending')
 end
 
+
+Then(/^I can see the organization with id "([^"]*)"$/) do |id|
+  output = run
+  expect(output).to include("_id:                 #{id}")
+  expect(output).to include('domain_names:["kage.com", "ecratic.com", "endipin.com", "zentix.com"]')
+end

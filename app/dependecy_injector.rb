@@ -9,7 +9,7 @@ module DependencyInjector
   end
 
   def search_option_controllers
-    [user_search_screen_controller, ticket_search_screen_controller]
+    [user_search_screen_controller, ticket_search_screen_controller, organizations_search_screen_controller]
   end
 
   def search_option_screen_controller
@@ -22,6 +22,14 @@ module DependencyInjector
 
   def ticket_search_screen_controller
     @ticket_search_screen_controller ||= SearchScreenController.new(ticket_repository)
+  end
+
+  def organizations_search_screen_controller
+    @organizations_search_screen_controller ||= SearchScreenController.new(organization_repository)
+  end
+
+  def organization_repository
+    @organization_repository ||= OrganizationRepository.new(organizations)
   end
 
   def user_repository
@@ -38,5 +46,9 @@ module DependencyInjector
 
   def tickets
     @tickets ||= JsonParser.new(File.dirname(__FILE__)+'/../data/tickets.json').parse
+  end
+
+  def organizations
+    @organizations ||= JsonParser.new(File.dirname(__FILE__)+'/../data/organizations.json').parse
   end
 end
