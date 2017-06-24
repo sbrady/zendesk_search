@@ -4,6 +4,7 @@ module Repository
     @results = results.map do |result_hash|
        self.class::MODEL_TYPE.new(result_hash)
     end
+    set_up_results_map
   end
 
   def repositories=(repositories)
@@ -15,8 +16,7 @@ module Repository
   end
 
   def find_by(field, value)
-    @results
-        .select { |result| result.send(field).to_s == value.to_s }
+    @results_map[field][value.to_s]
   end
 
   private
@@ -32,7 +32,10 @@ module Repository
   def hydrate_related_objects!(model)
     related_objects.each do |relationship|
       repository = find_repository_by_type(relationship[0])
-      related_object = repository.find_by(:_id, model.send(relationship[1])).first
+      related_objects = repository.find_by(:_id, model.send(relationship[1]))
+      if related_objects
+        related_object = related_objects.first
+      end
       model.send("#{relationship[2]}=", related_object)
     end
     model
@@ -42,5 +45,22 @@ module Repository
     @repositories.find { |repository| repository.class::MODEL_TYPE == model_type }
   end
 
+  def set_up_results_map
+    @results_map = {}
+    self.class::MODEL_TYPE.all_fields.each do |field|
+      @results_map[field] = all_values_for(field)
+                                .map{|value| {value => slow_find_by(field, value) }}
+                                .reduce{|a,b|a.merge(b)}
+    end
+  end
+
+  def all_values_for(field)
+    @results.map{|result| result.send(field).to_s}
+  end
+
+  def slow_find_by(field, value)
+    @results
+        .select { |result| result.send(field).to_s == value.to_s }
+  end
 
 end

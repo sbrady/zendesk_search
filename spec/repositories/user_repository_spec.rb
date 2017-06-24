@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe UserRepository do
-  let(:users) { [{_id: 9999, name: 'foo bar', organization_id: 777}] }
+  let(:users) do
+    [
+        {_id: 9999, name: 'foo bar', organization_id: 777},
+        {_id: 8888, name: 'bam baz'}
+    ]
+  end
   let(:organizations) { [{_id: 777, details: 'super fun corp'}] }
   let(:organization_repository) { OrganizationRepository.new(organizations) }
   subject { UserRepository.new(users) }
@@ -30,6 +35,11 @@ describe UserRepository do
       user = subject.find_by(:_id, '9999').first
       expect(user.organization._id).to eql(777)
       expect(user.organization.details).to eql('super fun corp')
+    end
+
+    it 'has does not have an organization' do
+      user = subject.find_by(:_id, '8888').first
+      expect(user.organization).to eql(nil)
     end
 
   end
