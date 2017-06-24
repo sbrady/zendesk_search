@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe FrontController do
   let(:search_screen_controller) { SearchScreenController.new(nil) }
-  let(:search_option_screen_controller) { SearchOptionScreenController.new([search_screen_controller]) }
-  let(:splash_screen_controller) { SplashScreenController.new([search_option_screen_controller]) }
-  let(:mock_program_ender){double('ProgramEnder')}
+  let(:search_option_screen_controller) { OptionsScreenController.new([search_screen_controller], nil) }
+  let(:splash_screen_view) { SplashScreenView.new }
+  let(:splash_screen_controller) { OptionsScreenController.new([search_option_screen_controller], splash_screen_view) }
+  let(:mock_program_ender) { double('ProgramEnder') }
   subject { FrontController.new(splash_screen_controller, mock_program_ender) }
 
   describe '#process' do
@@ -27,7 +28,19 @@ describe FrontController do
           expect(subject.process("1\n")).to eql(search_screen_controller)
         end
       end
+      context 'when an invalid selection is made' do
+        before do
 
+        end
+
+        it 'prints the error message' do
+          expect(subject).to receive(:puts).with("fakestuff is not valid a option\n")
+          subject.process("fakestuff\n")
+        end
+        it 'returns the current controller' do
+          expect(subject.process("fakestuff\n")).to eq(splash_screen_controller)
+        end
+      end
     end
 
     it 'ends the program when quit' do

@@ -12,8 +12,19 @@ class FrontController
   def process(input=nil)
     return @current_controller if input.nil?
     input = input.strip
-    @program_ender.shut_down! if input == 'quit'
-    @current_controller = @current_controller.next_controller(input)
+    return @program_ender.shut_down! if input == 'quit'
+    @current_controller = handle_input(input)
+  end
+
+  private
+
+  def handle_input(input)
+    begin
+      @current_controller.next_controller(input)
+    rescue InvalidInputError => iie
+      puts "#{iie.message}\n"
+      @current_controller
+    end
   end
 
 end

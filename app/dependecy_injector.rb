@@ -13,7 +13,11 @@ module DependencyInjector
   end
 
   def splash_screen_controller
-    @splash_screen_controller ||= SplashScreenController.new(splash_screen_options)
+    @splash_screen_controller ||= OptionsScreenController.new(splash_screen_options, splash_screen_view)
+  end
+
+  def splash_screen_view
+    @splash_screen_view ||= SplashScreenView.new
   end
 
   def search_option_controllers
@@ -21,7 +25,11 @@ module DependencyInjector
   end
 
   def search_option_screen_controller
-    @search_option_screen_controller ||= SearchOptionScreenController.new(search_option_controllers)
+    @search_option_screen_controller ||= OptionsScreenController.new(search_option_controllers, search_option_screen_view)
+  end
+
+  def search_option_screen_view
+    @search_option_screen_view ||= SearchOptionScreenView.new
   end
 
   def user_search_screen_controller
