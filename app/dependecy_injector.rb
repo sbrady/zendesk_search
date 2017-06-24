@@ -48,6 +48,11 @@ module DependencyInjector
     @ticket_repository ||= TicketRepository.new(tickets)
   end
 
+  def self.included(_)
+    @all_repositories = [organization_repository,user_repository,ticket_repository]
+    @all_repositories.each {|repository| repository.repositories=@all_repositories }
+  end
+
   def users
     @users ||= JsonParser.new(File.dirname(__FILE__)+'/../data/users.json').parse
   end

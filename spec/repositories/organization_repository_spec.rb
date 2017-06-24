@@ -4,6 +4,9 @@ describe OrganizationRepository do
   let(:users) { [{_id: 9999, details: 'mega Corp'}] }
   subject { OrganizationRepository.new(users) }
 
+  before do
+    subject.repositories=[]
+  end
 
   describe 'find_by' do
     context 'when a string field' do
