@@ -1,12 +1,11 @@
 class SearchOptionScreenController
 
-  def initialize(search_screen_controller)
-    @search_screen_controller = search_screen_controller
+  def initialize(search_screen_controllers)
+    @search_screen_controllers = search_screen_controllers
   end
 
   def next_controller(option)
-    return @search_screen_controller if option == '1'
-    self
+    @search_screen_controllers[option.to_i - 1] || self
   end
 
   def render

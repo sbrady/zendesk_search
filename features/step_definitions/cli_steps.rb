@@ -26,13 +26,13 @@ end
 
 Then(/^I can see the user with id "([^"]*)"$/) do |id|
   output = run
-  expect(output).to include("id:    #{id}")
-  expect(output).to include('name:    Rose Newton')
+  expect(output).to include("_id:                   #{id}")
+  expect(output).to include('name:         Rose Newton')
 end
 
 Then(/^I can see the ticket with id "([^"]*)"$/) do |id|
   output = run
-  expect(output).to include("id:    #{id}")
-  expect(output).to include('name:    Rose Newton')
+  expect(output).to include("_id:#{id}")
+  expect(output).to include('status:             pending')
 end
 

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe SearchScreenController do
   let(:users) { [{_id: '9999', name: 'foo bar'}] }
-  let(:user_repository) { UserRepository.new(users) }
-  subject { SearchScreenController.new(user_repository) }
+  let(:repository) { UserRepository.new(users) }
+  subject { SearchScreenController.new(repository) }
 
   describe 'next_controller' do
     context 'when the input is a valid field' do
@@ -20,10 +20,10 @@ describe SearchScreenController do
           expect(subject.next_controller('9999')).to eql(subject)
         end
 
-        it 'renders the found user' do
+        it 'renders the found search result' do
           subject.next_controller('_id')
           subject.next_controller('9999')
-          expect(subject.render).to eql(UserScreenView.new([User.new(users[0])]).render)
+          expect(subject.render).to eql(SearchResultsView.new([User.new(users[0])]).render)
         end
       end
 

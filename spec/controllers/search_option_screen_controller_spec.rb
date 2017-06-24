@@ -1,12 +1,19 @@
-describe SearchOptionScreenController do
+require 'spec_helper'
 
-  subject { SearchOptionScreenController.new(SearchScreenController
-                                           .new(nil)) }
+describe SearchOptionScreenController do
+  let(:ticket_search_controller) { SearchScreenController.new(nil) }
+  let(:user_search_controller) { SearchScreenController.new(nil) }
+
+  subject { SearchOptionScreenController.new([user_search_controller, ticket_search_controller]) }
 
   describe '#next_controller' do
     context 'when the input is a valid option' do
-      it 'returns the next controller' do
-        expect(subject.next_controller('1')).to be_a(SearchScreenController)
+      it 'returns the 1st option controller' do
+        expect(subject.next_controller('1')).to eql(user_search_controller)
+      end
+
+      it 'returns the 2nd option controller' do
+        expect(subject.next_controller('2')).to eql(ticket_search_controller)
       end
     end
 

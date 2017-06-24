@@ -1,7 +1,7 @@
 class SearchScreenController
 
-  def initialize(user_repository)
-    @user_repository = user_repository
+  def initialize(repository)
+    @repository = repository
   end
 
   def next_controller(option)
@@ -10,7 +10,7 @@ class SearchScreenController
   end
 
   def render
-    return render_users if field_and_value_set?
+    return render_results if field_and_value_set?
     return SearchValueScreenView.new.render if @search_field
     SearchFieldScreenView.new.render
   end
@@ -22,9 +22,9 @@ class SearchScreenController
     @search_value && @search_field
   end
 
-  def render_users
-    users = @user_repository.find_by(@search_field.to_sym, @search_value)
-    UserScreenView.new(users).render
+  def render_results
+    results = @repository.find_by(@search_field.to_sym, @search_value)
+    SearchResultsView.new(results).render
   end
 
   def set_field_and_value(option)
