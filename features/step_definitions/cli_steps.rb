@@ -11,12 +11,13 @@ end
 When(/^I select to search view list of searchable fields$/) do
   buffer_command('2')
 end
+SEARCH_TYPE_TO_OPTION={
+    'users' => '1',
+    'tickets' => '2',
+    'organizations' => '3'
+}
 
 When(/^I select "([^"]*)"$/) do |search_type|
-  SEARCH_TYPE_TO_OPTION={
-      'users' => '1',
-      'tickets' => '2'
-  }
   buffer_command(SEARCH_TYPE_TO_OPTION[search_type])
 end
 
