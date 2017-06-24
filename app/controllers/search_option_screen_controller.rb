@@ -1,4 +1,4 @@
-class SearchScreenController
+class SearchOptionScreenController
 
   def initialize(user_search_screen_controller)
     @user_search_screen_controller = user_search_screen_controller
@@ -10,7 +10,7 @@ class SearchScreenController
   end
 
   def render
-    SearchScreenView.new.render
+    SearchOptionScreenView.new.render
   end
 
 end

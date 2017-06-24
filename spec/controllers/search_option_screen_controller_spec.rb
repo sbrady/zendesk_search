@@ -1,6 +1,6 @@
-describe SearchScreenController do
+describe SearchOptionScreenController do
 
-  subject { SearchScreenController.new(UserSearchScreenController
+  subject { SearchOptionScreenController.new(UserSearchScreenController
                                            .new(nil)) }
 
   describe '#next_controller' do
@@ -19,7 +19,7 @@ describe SearchScreenController do
 
   describe '#render' do
     it 'renders its view' do
-      expect(subject.render).to eql(SearchScreenView.new.render)
+      expect(subject.render).to eql(SearchOptionScreenView.new.render)
     end
   end
 

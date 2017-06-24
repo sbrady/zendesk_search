@@ -5,7 +5,7 @@ Feature: Searching Users
 
 
   Scenario: Finding a user by id
-    Given a user exists with the id "4"
+    Given a "user" exists with the id "4"
     And I have started the app
     And I have selected to search Zendesk
     When I select "users"

@@ -5,11 +5,11 @@ module DependencyInjector
   end
 
   def splash_screen_controller
-    @splash_screen_controller ||= SplashScreenController.new(search_screen_controller)
+    @splash_screen_controller ||= SplashScreenController.new(search_option_screen_controller)
   end
 
-  def search_screen_controller
-    @search_screen_controller ||= SearchScreenController.new(user_search_screen_controller)
+  def search_option_screen_controller
+    @search_option_screen_controller ||= SearchOptionScreenController.new(user_search_screen_controller)
   end
 
   def user_search_screen_controller

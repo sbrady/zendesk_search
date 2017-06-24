@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe SplashScreenController do
-  subject { SplashScreenController.new(SearchScreenController.new(nil)) }
+  subject { SplashScreenController.new(SearchOptionScreenController.new(nil)) }
 
   describe 'next_controller' do
     context 'when the input is a valid option' do
       it 'returns the next controller' do
-        expect(subject.next_controller('1')).to be_a(SearchScreenController)
+        expect(subject.next_controller('1')).to be_a(SearchOptionScreenController)
       end
     end
 

@@ -4,7 +4,7 @@ describe FrontController do
 
 
   let(:splash_screen_controller) { SplashScreenController
-                                       .new(SearchScreenController
+                                       .new(SearchOptionScreenController
                                                 .new(UserSearchScreenController
                                                          .new(nil))) }
   subject { FrontController
@@ -21,7 +21,7 @@ describe FrontController do
         subject.process
       end
       it 'returns that selection' do
-        expect(subject.process("1\n")).to be_a(SearchScreenController)
+        expect(subject.process("1\n")).to be_a(SearchOptionScreenController)
       end
       context 'when another selection is made' do
         before do
