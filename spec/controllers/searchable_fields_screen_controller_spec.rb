@@ -3,6 +3,12 @@ require 'spec_helper'
 describe SearchableFieldsScreenController do
   subject { SearchableFieldsScreenController.new }
 
+  describe 'next_controller' do
+    it 'returns its self' do
+      expect(subject.next_controller('ignore this')).to eql(subject)
+    end
+  end
+
   describe '#render' do
 
     before do
