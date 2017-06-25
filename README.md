@@ -23,6 +23,7 @@ best suited to dynamic languages.
 
 
 --things to fix ---
+
 Currently the user will be stuck at the end of the program. 
 It would be possible to use DI here to inject the `splash_screen_controller`, as the `next_controller` 
 to allow the program to restart.
