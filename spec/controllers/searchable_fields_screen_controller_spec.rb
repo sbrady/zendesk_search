@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe SearchableScreenController do
-  subject { SearchableScreenController.new }
+describe SearchableFieldsScreenController do
+  subject { SearchableFieldsScreenController.new }
 
   describe '#render' do
 

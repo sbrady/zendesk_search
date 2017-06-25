@@ -9,7 +9,7 @@ module DependencyInjector
   end
 
   def splash_screen_options
-    [search_option_screen_controller, searchable_screen_controller]
+    [search_option_screen_controller, searchable_fields_screen_controller]
   end
 
   def splash_screen_controller
@@ -44,8 +44,8 @@ module DependencyInjector
     @organizations_search_screen_controller ||= SearchScreenController.new(organization_repository)
   end
 
-  def searchable_screen_controller
-    @searchable_screen_controller ||= SearchableScreenController.new
+  def searchable_fields_screen_controller
+    @searchable_fields_screen_controller ||= SearchableFieldsScreenController.new
   end
 
   def organization_repository
