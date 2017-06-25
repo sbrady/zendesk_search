@@ -90,3 +90,8 @@ ORG_FIELD
   expect(output). to include(org_fields)
 
 end
+
+Then(/^I can see there are no results$/) do
+  output = run
+  expect(output). to include('No Search Results Found')
+end

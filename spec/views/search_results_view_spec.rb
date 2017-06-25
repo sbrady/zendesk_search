@@ -4,7 +4,6 @@ describe SearchResultsView do
 
   subject { SearchResultsView.new(results) }
 
-
   context 'users' do
     let(:results) { [user_1, user_2] }
     let(:user_1) { User.new({_id: 11, name: 'some guy'}) }
@@ -38,7 +37,14 @@ describe SearchResultsView do
       expect(render_result).to include('_id:                  44')
       expect(render_result).to include('status:                high')
     end
+  end
 
+  context 'when there are no results' do
+    let(:results) { nil }
+    it 'says there are no results' do
+      render_result = subject.render
+      expect(render_result).to include("No Search Results Found\n")
+    end
   end
 
 end

@@ -5,6 +5,7 @@ class SearchResultsView
   end
 
   def render
+    return "No Search Results Found\n" unless @results
     @results.map { |result| result_print(result) }.join("\n\n")
   end
 
