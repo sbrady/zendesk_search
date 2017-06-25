@@ -93,5 +93,10 @@ end
 
 Then(/^I can see there are no results$/) do
   output = run
-  expect(output). to include('No Search Results Found')
+  expect(output).to include('No Search Results Found')
+end
+
+Then(/^I can see an error message$/) do
+  output = run
+  expect(output).to include('is not valid a option')
 end
