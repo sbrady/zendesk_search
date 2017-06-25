@@ -9,7 +9,7 @@ class FrontController
     @program_ender = program_ender
   end
 
-  def process(input=nil)
+  def next_controller(input=nil)
     return @current_controller if input.nil?
     input = input.strip
     return @program_ender.shut_down! if input == 'quit'
