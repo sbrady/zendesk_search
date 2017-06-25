@@ -17,6 +17,7 @@ describe SearchScreenController do
 
       context 'when next_controller is called again' do
         it 'returns self' do
+          subject.next_controller('_id')
           expect(subject.next_controller('9999')).to eql(subject)
         end
 
@@ -29,10 +30,12 @@ describe SearchScreenController do
 
     end
 
-    context 'when the input is not valid option' do
-      it 'returns its self' do
-        expect(subject.next_controller('99asdf')).to eql(subject)
+    context 'when the input is not a valid field' do
+      it 'displays a error msg when out of range' do
+        expect{subject.next_controller('I would like to search by id, computer')}
+            .to raise_error(InvalidInputError, "I would like to search by id, computer is not valid a option")
       end
+
     end
   end
 

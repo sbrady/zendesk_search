@@ -15,7 +15,6 @@ class SearchScreenController
     SearchFieldScreenView.new.render
   end
 
-
   private
 
   def field_and_value_set?
@@ -29,6 +28,13 @@ class SearchScreenController
 
   def set_field_and_value(option)
     @search_value = option if @search_field
-    @search_field = option unless @search_value
+    unless @search_value
+      raise InvalidInputError.new(option) unless valid_field?(option)
+      @search_field = option
+    end
+  end
+
+  def valid_field?(option)
+    @repository.class::MODEL_TYPE.all_fields.include?(option.to_sym)
   end
 end

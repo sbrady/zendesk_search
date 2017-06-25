@@ -7,7 +7,7 @@ class OptionsScreenController
 
   def next_controller(option)
     option_index = option.to_i - 1
-    raise InvalidInputError.new("#{option} is not valid a option") unless valid_input?(option_index)
+    raise InvalidInputError.new(option) unless valid_input?(option_index)
     @screen_options[option_index]
   end
 
