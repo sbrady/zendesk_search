@@ -12,14 +12,14 @@ describe SearchResultsView do
     it 'displays users' do
       user_2.organization=organization
       render_result = subject.render
-      expect(render_result).to include('_id:                  11')
-      expect(render_result).to include('name:            some guy')
+      expect(render_result).to include('_id:                          11')
+      expect(render_result).to include('name:                         some guy')
 
-      expect(render_result).to include('_id:                  22')
-      expect(render_result).to include('name:      some other guy')
+      expect(render_result).to include('_id:                          22')
+      expect(render_result).to include('name:                         some other guy')
       expect(render_result).to include('organization:')
-      expect(render_result).to include('_id:                 888')
-      expect(render_result).to include('deitals:           super org')
+      expect(render_result).to include('   _id:                          888')
+      expect(render_result).to include('   deitals:                      super org')
     end
 
   end
@@ -31,11 +31,11 @@ describe SearchResultsView do
 
     it 'displays tickets' do
       render_result = subject.render
-      expect(render_result).to include('_id:                  33')
-      expect(render_result).to include('status:                 low')
+      expect(render_result).to include('_id:                          33')
+      expect(render_result).to include('status:                       low')
 
-      expect(render_result).to include('_id:                  44')
-      expect(render_result).to include('status:                high')
+      expect(render_result).to include('_id:                          44')
+      expect(render_result).to include('status:                       low')
     end
   end
 
